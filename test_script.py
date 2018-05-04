@@ -1,7 +1,8 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn import preprocessing
 import numpy as np
+from randomForest import *
+
 
 def encode_labels(df):
     le = preprocessing.LabelEncoder()
@@ -65,7 +66,7 @@ df['binned_fnlwgt'] = pd.cut(df['fnlwgt'], bins=3, labels=[0, 1, 2])
 series_fnlwgt, bins_of_fnlwgt = pd.cut(df['fnlwgt'], bins=3, retbins=True, labels=False)
 df_test['binned_fnlwgt'] = pd.cut(df_test['fnlwgt'], bins=bins_of_fnlwgt, labels=[0, 1, 2])
 df['binned_capital-gain'] = pd.cut(df['capital-gain'], bins=3, labels=[0, 1, 2])
-series_loss, bins_of_cp = pd.cut(df['capital-gain'], bins=3, retbins=True, labels=False)
+series_gain, bins_of_cp = pd.cut(df['capital-gain'], bins=3, retbins=True, labels=False)
 df_test['binned_capital-gain'] = pd.cut(df_test['capital-gain'], bins=bins_of_cp, labels=[0, 1, 2])
 df['binned_capital-loss'] = pd.cut(df['capital-loss'], bins=3, labels=[0, 1, 2])
 series_loss, bins_of_loss = pd.cut(df['capital-loss'], bins=3, retbins=True, labels=False)
@@ -76,3 +77,14 @@ df_test['binned_hours-per-week'] = pd.cut(df_test['hours-per-week'], bins=bins_o
 
 print("Train data after processing=", df.head())
 print("Test data after processing=", df_test.head())
+
+X_train = df[['workclass', 'education', 'education-num', 'marital-status'
+       , 'occupation', 'relationship', 'race', 'sex', 'native-country',
+      'binned_age', 'binned_fnlwgt', 'binned_capital-gain', 'binned_capital-loss', 'binned_hours-per-week']]
+y_train = df['income']
+
+X_train = X_train.values.tolist()
+y_train = y_train.values.tolist()
+
+rf_classifier = random_forest()
+rf_classifier.fit(X_train, y_train)
