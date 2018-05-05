@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5fc260c0-1bf1-4968-a679-9661dc26e62c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Assignment_5.ipynb" afterPath="$PROJECT_DIR$/Assignment_5.ipynb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/decision_tree.py" afterPath="$PROJECT_DIR$/decision_tree.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/randomForest.py" afterPath="$PROJECT_DIR$/randomForest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_script.py" afterPath="$PROJECT_DIR$/test_script.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,7 +13,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_script.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_script.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test_script.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="272">
@@ -61,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="51">
+              <caret line="3" column="61" lean-forward="false" selection-start-line="3" selection-start-column="61" selection-end-line="3" selection-end-column="61" />
               <folding />
             </state>
           </provider>
@@ -83,6 +79,7 @@
         <option value="$PROJECT_DIR$/decision_tree.py" />
         <option value="$PROJECT_DIR$/randomForest.py" />
         <option value="$PROJECT_DIR$/test_script.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -266,14 +263,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/decision_tree.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -299,6 +288,14 @@
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="61" lean-forward="false" selection-start-line="3" selection-start-column="61" selection-end-line="3" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
