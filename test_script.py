@@ -1,13 +1,22 @@
 import pandas as pd
 from sklearn import preprocessing
-import numpy as np
 from randomForest import *
+
+
+def accuracy(labels, hypotheses):
+    count = 0.0
+    correct = 0.0
+
+    for l, h in zip(labels, hypotheses):
+        count += 1.0
+        if l == h:
+            correct += 1.0
+    return correct / count
 
 
 def encode_labels(df):
     le = preprocessing.LabelEncoder()
     le.fit(df['workclass'].unique())
-    print(le.classes_)
     df['workclass'] = le.transform(df['workclass'])
     df.head()
 
@@ -60,7 +69,6 @@ df_test = encode_labels(df_test)
 
 df['binned_age'] = pd.cut(df['age'], bins=3, labels=[0, 1, 2])
 series_age, bins_of_age = pd.cut(df['age'], bins=3, retbins=True, labels=False)
-print(bins_of_age)
 df_test['binned_age'] = pd.cut(df_test['age'], bins=bins_of_age, labels=[0, 1, 2])
 df['binned_fnlwgt'] = pd.cut(df['fnlwgt'], bins=3, labels=[0, 1, 2])
 series_fnlwgt, bins_of_fnlwgt = pd.cut(df['fnlwgt'], bins=3, retbins=True, labels=False)
@@ -75,8 +83,8 @@ df['binned_hours-per-week'] = pd.cut(df['hours-per-week'], bins=3, labels=[0, 1,
 series_hp, bins_of_hp = pd.cut(df['hours-per-week'], bins=3, retbins=True, labels=False)
 df_test['binned_hours-per-week'] = pd.cut(df_test['hours-per-week'], bins=bins_of_hp, labels=[0, 1, 2])
 
-print("Train data after processing=", df.head())
-print("Test data after processing=", df_test.head())
+# print("Train data after processing=", df.head())
+# print("Test data after processing=", df_test.head())
 
 X_train = df[['workclass', 'education', 'education-num', 'marital-status'
        , 'occupation', 'relationship', 'race', 'sex', 'native-country',
@@ -86,5 +94,17 @@ y_train = df['income']
 X_train = X_train.values.tolist()
 y_train = y_train.values.tolist()
 
+X_test = df_test[['workclass', 'education', 'education-num', 'marital-status'
+       , 'occupation', 'relationship', 'race', 'sex', 'native-country',
+      'binned_age', 'binned_fnlwgt', 'binned_capital-gain', 'binned_capital-loss', 'binned_hours-per-week']]
+
+X_test = X_test.values.tolist()
+y_test = df_test['income']
+y_test = y_test.values.tolist()
+
 rf_classifier = random_forest()
 rf_classifier.fit(X_train, y_train)
+hyp = rf_classifier.predict(X_test)
+print("Hypothesis=", hyp)
+score = accuracy(y_test, hyp)
+print("Accuracy score=", score)

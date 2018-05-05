@@ -5,6 +5,7 @@ class decision_tree(classifier):
 
     def __init__(self, criterion="entropy"):
         super().__init__()
+        self.feature_list = None
         self.criterion = criterion
 
     def gini(self, Y):
@@ -49,40 +50,42 @@ class decision_tree(classifier):
 
     def choose_feature(self, X, Y):
         if self.criterion == "entropy":
-            print("entropy")
+            # print("entropy")
             entropy = self.entropy(Y)
             best_information_gain = 0.
             best_feature = -1
             for i in range(len(X[0])):  # For each feature
-                feature_list = [x[i] for x in X]
-                values = set(feature_list)
-                entropy_i = 0.
-                for value in values:
-                    sub_x, sub_y = self.split_data(X, Y, i, value)
-                    prob = len(sub_x) / float(len(X))
-                    entropy_i += prob * self.entropy(sub_y)
-                info_gain = entropy - entropy_i
-                if info_gain > best_information_gain:
-                    best_information_gain = info_gain
-                    best_feature = i
+                if i in self.feature_list:
+                    feature_list = [x[i] for x in X]
+                    values = set(feature_list)
+                    entropy_i = 0.
+                    for value in values:
+                        sub_x, sub_y = self.split_data(X, Y, i, value)
+                        prob = len(sub_x) / float(len(X))
+                        entropy_i += prob * self.entropy(sub_y)
+                    info_gain = entropy - entropy_i
+                    if info_gain > best_information_gain:
+                        best_information_gain = info_gain
+                        best_feature = i
             return best_feature
         else:
-            print("gini")
+            # print("gini")
             gini = self.gini(Y)
             best_information_gain = 0.
             best_feature = -1
             for i in range(len(X[0])):  # For each feature
-                feature_list = [x[i] for x in X]
-                values = set(feature_list)
-                gini_i = 0.
-                for value in values:
-                    sub_x, sub_y = self.split_data(X, Y, i, value)
-                    prob = len(sub_x) / float(len(X))
-                    gini_i += prob * self.gini(sub_y)
-                info_gain = gini - gini_i
-                if info_gain > best_information_gain:
-                    best_information_gain = info_gain
-                    best_feature = i
+                if i in self.feature_list:
+                    feature_list = [x[i] for x in X]
+                    values = set(feature_list)
+                    gini_i = 0.
+                    for value in values:
+                        sub_x, sub_y = self.split_data(X, Y, i, value)
+                        prob = len(sub_x) / float(len(X))
+                        gini_i += prob * self.gini(sub_y)
+                    info_gain = gini - gini_i
+                    if info_gain > best_information_gain:
+                        best_information_gain = info_gain
+                        best_feature = i
             return best_feature
 
 
@@ -143,6 +146,7 @@ class decision_tree(classifier):
 
     def fit(self, X, Y):
         self.tree = self.build_tree(X, Y)
+        print("Feature List", self.feature_list) 
 
     def predict(self, X):
         hyp = []
